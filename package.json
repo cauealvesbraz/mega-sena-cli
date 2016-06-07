@@ -1,0 +1,40 @@
+{
+  "name": "mega-sena-cli",
+  "version": "1.0.2",
+  "description": "Verifica se os números escolhidos já foram sorteados nos jogos anteriores da Mega Sena.",
+  "license": "MIT",
+  "author": {
+    "name": "Cauê Alves",
+    "email": "cauealveseng@gmail.com",
+    "url": "cauealves.com"
+  },
+  "bin": {
+    "mega-sena": "cli.js"
+  },
+  "scripts": {
+    "test": "ava test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cauealves/mega-sena-cli.git"
+  },
+  "keywords": [
+    "cli",
+    "mega-sena"
+  ],
+  "bugs": {
+    "url": "https://github.com/cauealves/mega-sena-cli/issues"
+  },
+  "homepage": "https://github.com/cauealves/mega-sena-cli#readme",
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "execa": "^0.4.0"
+  },
+  "dependencies": {
+    "cli-color": "^1.1.0",
+    "jsonfile": "^2.3.1",
+    "meow": "^3.7.0",
+    "minimist": "^1.2.0",
+    "parse-json": "^2.2.0"
+  }
+}
