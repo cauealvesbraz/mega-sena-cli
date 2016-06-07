@@ -7,6 +7,7 @@ const jsonFile  = require('jsonfile');
 const color     = require('cli-color');
 const argv      = require('minimist')(process.argv.slice(2));
 const meow      = require('meow');
+const path      = require('path');
 
 const cli = meow(`
     Usage
@@ -26,7 +27,7 @@ if (wrongNumber) {
 
 let sequence = argv._;
 
-jsonFile.readFile('./results.json', function(err, response) {
+jsonFile.readFile(path.resolve(__dirname) + '/results.json', function(err, response) {
   let results = JSON.parse(JSON.stringify(response));
 
   results.forEach((result) => {
