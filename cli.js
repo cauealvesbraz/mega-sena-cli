@@ -32,7 +32,7 @@ jsonFile.readFile('./results.json', function(err, response) {
   results.forEach((result) => {
     if (false === sequence.hasDiff(result.numbers)) {
       console.log(color.cyan(' 😱 Você escolheu os números que foram sorteados no dia ' + result.date + '!'));
-      return;
+      process.exit(0);
     };
   });
 
