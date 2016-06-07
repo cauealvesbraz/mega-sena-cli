@@ -1,7 +1,7 @@
 {
   "name": "mega-sena-cli",
   "version": "0.1.0",
-  "description": "Verifica se os números escolhidos já foram sorteados nos jogos anteriores da Mega Sena.",
+  "description": "Verifica se os números foram sorteados nos jogos anteriores da Mega Sena.",
   "license": "MIT",
   "author": {
     "name": "Cauê Alves",
