@@ -5,7 +5,7 @@
 <br />
 
 <p align="center">
-  <img width="30%" src="./mega-sena.jpg?raw=true" />
+  <img width="80%" src="./money.gif?raw=true" />
 </p>
 
 
