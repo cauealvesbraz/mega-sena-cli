@@ -30,19 +30,20 @@ let sequence = argv._;
 
 jsonFile.readFile(path.resolve(__dirname) + '/results.json', function(err, response) {
   let results = JSON.parse(JSON.stringify(response));
+  let numbersFound = false;
 
   var emoji = (os.platform() == 'win32') ? '\u2665' : '❤️';
 
+
   results.forEach((result) => {
     if (false === sequence.hasDiff(result.numbers)) {
+        numbersFound = true;
         emoji = (os.platform() == 'win32') ? '\u00D6' : '😱';
-
         console.log(color.cyan(emoji + ' Você escolheu os números que foram sorteados no dia ' + result.date + '!'));
-        process.exit(0);
     };
   });
-
-  console.log(color.green(' Ihh, essa sequência nunca foi sorteada!\n Se for tentar a sorte e ganhar algo, lembre de mim... ' + emoji));
+  if(!numbersFound)
+    console.log(color.green(' Ihh, essa sequência nunca foi sorteada!\n Se for tentar a sorte e ganhar algo, lembre de mim... ' + emoji));
 });
 
 Array.prototype.hasDiff = function(arr) {
