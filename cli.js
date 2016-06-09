@@ -31,21 +31,18 @@ let sequence = argv._;
 jsonFile.readFile(path.resolve(__dirname) + '/results.json', function(err, response) {
   let results = JSON.parse(JSON.stringify(response));
 
+  const emoji = (os.platform() == 'win32') ? '\u2665' : '❤️';
+
   results.forEach((result) => {
     if (false === sequence.hasDiff(result.numbers)) {
-        if (os.platform() == 'win32') {
-            console.log(color.cyan(' \u00D6 Você escolheu os números que foram sorteados no dia ' + result.date + '!'));
-        } else {
-            console.log(color.cyan(' 😱 Você escolheu os números que foram sorteados no dia ' + result.date + '!'));
-        }
-      process.exit(0);
+        emoji = (os.platform() == 'win32') ? '\u00D6' : '😱';
+
+        console.log(color.cyan(emoji + ' Você escolheu os números que foram sorteados no dia ' + result.date + '!'));
+        process.exit(0);
     };
   });
-    if (os.platform() == 'win32') {
-        console.log(color.green(' Ihh, essa sequência nunca foi sorteada!\n Se for tentar a sorte e ganhar algo, lembre de mim... \u2665'));
-    } else {
-        console.log(color.green(' Ihh, essa sequência nunca foi sorteada!\n Se for tentar a sorte e ganhar algo, lembre de mim... ❤️'));
-    }
+
+  console.log(color.green(' Ihh, essa sequência nunca foi sorteada!\n Se for tentar a sorte e ganhar algo, lembre de mim... ' + emoji));
 });
 
 Array.prototype.hasDiff = function(arr) {
