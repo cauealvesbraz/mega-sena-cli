@@ -68,7 +68,7 @@ Array.prototype.diffCounter = function(arr) {
   arr.sort();
 
   for (var i = 0; i < this.length; i++) {
-    if (arr.indexOf(this[i]) !== -1) {
+    if (arr.indexOf(this[i]) !== -1 && this[i] != this[i+1] ) {//avoid duplicated numbers
       diffs --;
     };
   };
