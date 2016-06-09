@@ -8,6 +8,7 @@ const color     = require('cli-color');
 const argv      = require('minimist')(process.argv.slice(2));
 const meow      = require('meow');
 const path      = require('path');
+const os        = require('os');
 
 const cli = meow(`
     Usage
@@ -32,12 +33,19 @@ jsonFile.readFile(path.resolve(__dirname) + '/results.json', function(err, respo
 
   results.forEach((result) => {
     if (false === sequence.hasDiff(result.numbers)) {
-      console.log(color.cyan(' 😱 Você escolheu os números que foram sorteados no dia ' + result.date + '!'));
+        if (os.platform() == 'win32') {
+            console.log(color.cyan(' \u00D6 Você escolheu os números que foram sorteados no dia ' + result.date + '!'));
+        } else {
+            console.log(color.cyan(' 😱 Você escolheu os números que foram sorteados no dia ' + result.date + '!'));
+        }
       process.exit(0);
     };
   });
-
-  console.log(color.green(' Ihh, essa sequência nunca foi sorteada!\n Se for tentar a sorte e ganhar algo, lembre de mim... ❤️'));
+    if (os.platform() == 'win32') {
+        console.log(color.green(' Ihh, essa sequência nunca foi sorteada!\n Se for tentar a sorte e ganhar algo, lembre de mim... \u2665'));
+    } else {
+        console.log(color.green(' Ihh, essa sequência nunca foi sorteada!\n Se for tentar a sorte e ganhar algo, lembre de mim... ❤️'));
+    }
 });
 
 Array.prototype.hasDiff = function(arr) {
