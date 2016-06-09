@@ -31,7 +31,7 @@ let sequence = argv._;
 jsonFile.readFile(path.resolve(__dirname) + '/results.json', function(err, response) {
   let results = JSON.parse(JSON.stringify(response));
 
-  const emoji = (os.platform() == 'win32') ? '\u2665' : '❤️';
+  var emoji = (os.platform() == 'win32') ? '\u2665' : '❤️';
 
   results.forEach((result) => {
     if (false === sequence.hasDiff(result.numbers)) {
