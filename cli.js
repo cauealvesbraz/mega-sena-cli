@@ -30,32 +30,39 @@ let sequence = argv._;
 
 jsonFile.readFile(path.resolve(__dirname) + '/results.json', function(err, response) {
   let results = JSON.parse(JSON.stringify(response));
-  let numbersFound = false;
+  
+  let wasFound = false;
 
-  emoji = (os.platform() == 'win32') ? '\u00D6' : '😱';
+  var emoji = (os.platform() == 'win32') ? '\u00D6' : '😱';
+
   results.forEach((result) => {
-    let diffNum = sequence.diffCounter(result.numbers);
-    if( diffNum <= 2 ){
-      
-      numbersFound = true;
-      //show the messages
-      switch(diffNum) {
+    let totalDifference = sequence.diffCounter(result.numbers);
+
+    if (totalDifference <= 2) {
+      wasFound = true;
+
+      switch(totalDifference) {
         case 0:
           console.log(color.cyan(emoji + ' Você escolheu os números que foram sorteados no dia ' + result.date + '!'));
+          process.exit(0);
           break;
         case 1:
           console.log(color.yellow(emoji + ' Você escolheu os números que foram quina no dia ' + result.date + '!'));
+          process.exit(0);
           break;
         case 2: 
           console.log(color.magenta(emoji + ' Você escolheu os números que foram quadra no dia ' + result.date + '!'));
+          process.exit(0);
           break;
       }
     }
   });
-  if(!numbersFound){
-    var emoji = (os.platform() == 'win32') ? '\u2665' : '❤️';
+
+  if (false === wasFound) {
+    emoji = (os.platform() == 'win32') ? '\u2665' : '❤️';
     console.log(color.green(' Ihh, essa sequência nunca foi sorteada!\n Se for tentar a sorte e ganhar algo, lembre de mim... ' + emoji));
-  }
+  };
+  
 });
 
 /**
