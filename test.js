@@ -24,6 +24,17 @@ test('with a valid amount of numbers', async t => {
     await execa.stdout('./cli.js', ['05','06','12','19','30','60']), 
     /😱 Você escolheu os números que foram sorteados no dia/
   );
+
+  t.regex(
+    await execa.stdout('./cli.js', ['05','12','12','19','30','60']), 
+    /😱 Você escolheu os números que foram quina no dia/
+  );
+
+  t.regex(
+    await execa.stdout('./cli.js', ['12','12','12','19','30','60']), 
+    /😱 Você escolheu os números que foram quadra no dia/
+  );
+
   
   t.regex(
     await execa.stdout('./cli.js', ['35','16','12','12','30','60']), 
